@@ -1,0 +1,51 @@
+body{
+    font-size: .8rem;
+}
+
+
+.navigation {
+    font-size: .8rem;
+}
+
+.clearance{
+    color: #ffffff;
+}
+
+.card.add-clearance{
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.card.add-clearance .card-icon{
+    padding-right: 1.5rem;
+}
+
+.card .clearance-header{
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-weight: 500;
+}
+
+.card.add-clearance .clearance-title{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.card.clearance .clearance-id{
+    padding-bottom: 1.5rem;
+}
+
+.card.clearance .clearance-title{
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.card.clearance .clearance-location{
+    font-weight: 600;
+}
+
+.card.clearance .clearance-payable{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
