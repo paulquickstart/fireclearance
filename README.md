@@ -4,6 +4,7 @@ How to install local machine:
 - git clone https://github.com/paulquickstart/fireclearance.git
 - set database fireclearance
 - edit the env.
+<br>
 Run the command
  - composer update
  - php artisan key:generate
