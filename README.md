@@ -6,11 +6,11 @@ How to install local machine:
 - edit the env.
 <br>
 Run the command
- - composer update
- - php artisan key:generate
- - php artisan migrate
- - php artisan db:seed –class=RoleSeeder
- - composer dump autoload
- - php artisan config:cache
- - php artisan serve
+ - composer update <br>
+ - php artisan key:generate <br>
+ - php artisan migrate <br>
+ - php artisan db:seed –class=RoleSeeder <br>
+ - composer dump autoload <br>
+ - php artisan config:cache <br>
+ - php artisan serve <br>
 
