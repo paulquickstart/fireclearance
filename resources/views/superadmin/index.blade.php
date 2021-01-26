@@ -22,10 +22,10 @@
 	      	<td>{{ $user->roles->first()->display_name }}</td>
 	      	<td>
 	      		<button type="button" 
-	      			class="btn btn-info btn-sm viewUserProfileButton" 
+	      			class="btn btn-info btn-sm editProfileButton" 
 				  	data-user-data-id="{{ $user->id }}" 
 				  	data-toggle="modal" 
-				  	data-target="#viewUserProfileModal" >
+				  	data-target="#editProfileModal" >
 				  	edit profile
 	      		</button>
 	      	</td>
@@ -53,7 +53,7 @@
 	</table>
 
 	<!-- Modal -->
-	<div id="viewUserProfileModal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div id="editProfileModal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog modal-lg">
 	    <div class="modal-content">
 	      <div class="modal-header">
