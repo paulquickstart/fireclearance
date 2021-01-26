@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\User;
+use App\Admin;
+use App\Role;
+
 class SuperAdminController extends Controller
 {
     /**
@@ -13,7 +17,8 @@ class SuperAdminController extends Controller
      */
     public function index()
     {
-        return view('superadmin.index');
+        $data['users'] = User::with('roles')->get();
+        return view('superadmin.index', $data);
     }
 
     /**
