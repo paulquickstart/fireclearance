@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -15,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
         <!-- BEGIN: Vendor CSS-->
-        <link rel="stylesheet" type="text/css" href="{{ asset('vendors/css/vendors.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/vendors/css/vendors.min.css') }}">
         <!-- END: Vendor CSS-->
 
         <!-- BEGIN: Theme CSS-->
@@ -122,20 +123,20 @@
     <!-- END: Content-->
 
  <!-- BEGIN: Vendor JS-->
-        <script src="{{ asset('vendors/js/vendors.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/vendors/js/vendors.min.js') }}"></script>
         <!-- BEGIN Vendor JS-->
 
         <!-- BEGIN: Page Vendor JS-->
-        <script src="{{ asset('vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
         <!-- END: Page Vendor JS-->
 
         <!-- BEGIN: Theme JS-->
-        <script src="{{ asset('js/core/app-menu.js') }}"></script>
-        <script src="{{ asset('js/core/app.js') }}"></script>
+        <script src="{{ asset('js/plugins/core/app-menu.js') }}"></script>
+        <script src="{{ asset('js/plugins/core/app.js') }}"></script>
         <!-- END: Theme JS-->
 
         <!-- BEGIN: Page JS-->
-        <script src="{{ asset('js/scripts/pages/page-auth-login.js') }}"></script>
+        <script src="{{ asset('js/plugins/pages/page-auth-login.js') }}"></script>
         <!-- END: Page JS-->
 
         <script>

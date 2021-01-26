@@ -32,6 +32,13 @@ class Role extends Model
   	];
 
     /**
+    * The table associated with the model.
+    *
+    * @var string
+    */
+    protected $table = 'roles';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -53,6 +60,20 @@ class Role extends Model
     public static function byId($role)
     {
         return $role['id'];
+    }
+
+    //---------- scopes
+    public function scopeName($query, $name)
+    {
+        if (!empty($name))
+        {
+            return $query->where('name', $name);
+        }
+    }
+
+    public static function byName($role)
+    {
+          return $role['name']; // get the fields name
     }
 
 }

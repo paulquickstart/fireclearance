@@ -50,6 +50,14 @@ class LoginController extends Controller
                 $suer_role = $user->roles->first()->name;
 
                 switch ($suer_role) {
+
+                    case User::ROLE_SUPER_ADMIN : 
+                        return redirect()->intended('user/super-admin');
+                        break;
+                   case  User::ROLE_ADMIN :
+
+                        return redirect()->intended('user/admin');
+                        break; 
                     case User::ROLE_CLIENT :
                         return redirect()->intended('user/client');
                         break;         

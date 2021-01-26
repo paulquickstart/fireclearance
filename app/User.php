@@ -7,9 +7,17 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+use App\Admin;
+use App\Client;
+
 class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
+
+    // Cast attributes JSON to array
+    protected $casts = [
+        'attributes' => 'array'
+    ];
 
     const ADMIN_USER_TYPE = [
         'id' => self::ADMIN_TYPE, 
@@ -19,6 +27,12 @@ class User extends Authenticatable
     const CLIENT_USER_TYPE = [
         'id' => self::CLIENT_TYPE,
         'name' => "Client"
+    ];
+
+
+    const USER_TYPE = [
+        self::ADMIN_USER_TYPE,
+        self::CLIENT_USER_TYPE
     ];
 
     const ADMIN_TYPE = 1;
@@ -45,12 +59,11 @@ class User extends Authenticatable
         'email',
         'name', 
         'password',
-        'user_type',
-        'activated_at',
+         'user_type',
         'created_by',
         'updated_by',
         'created_at',
-        'updated_at'
+        'updated_at',
     ];
 
     /**
@@ -75,14 +88,19 @@ class User extends Authenticatable
 
 
     /** Relationship Table **/
+    public function admins()
+    {
+        // return $this->hasOne(Admin::class);   return $this->hasOne('App\Models\Admin');
+        return $this->hasOne(Admin::class, 'user_id', 'id');
+    }
 
     /**
      * The client that belong to the user.
      * return $this->hasOne('App\Phone', 'foreign_key_of_the_client', 'local_key_of_the_user') // sakto nani
     */
-    public function client()
+    public function clients()
     {
-        return $this->hasOne('App\Client', 'user_id', 'id');
+        return $this->hasOne(Client::class, 'user_id', 'id');
     }
 
     /**
@@ -109,7 +127,22 @@ class User extends Authenticatable
     
 
     //---------- helpers
-   
+    
+    /**
+     * Checking is Client Role.
+     * to do
+     */
+    public function isAdmin($role = null)
+    {
+
+        if($this->user_type == self::ADMIN_TYPE)   // checking if admin type siya
+        {
+            return  !empty($role) ? $this->hasRole($role) : true;
+        }
+
+        return false;
+    }
+
     /**
      * Checking is Client Role.
      * to do
@@ -203,4 +236,16 @@ class User extends Authenticatable
 
         return false;
     }  
+
+    public function canDelete()
+    {
+        // do not allow user to delete his own account
+        if (belongs_to_logged_in_user($this->id))
+        {
+            return false;
+        }
+
+        return true;
+    }
+        
 }

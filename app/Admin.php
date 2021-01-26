@@ -2,20 +2,22 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Model;;
 
-class Client extends Model
+use App\User;
+
+class Admin extends Model
 {
     use SoftDeletes;
 
-    /**
+   /**
      * The table associated with the model.
      *
      * @var string
     */
-    protected $table = 'clients';
-
+    protected $table = 'admins';
+    
     /**
      * id guarded
      *
@@ -24,26 +26,28 @@ class Client extends Model
     protected $guarded = ['id'];
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'user_id', 
-        'first_name',
-        'last_name', 
-        'created_by',
-        'updated_by',
-        'created_at',
-        'updated_at'
-    ];
-
-    /**
      * dates fields proteced
      *
      * @var param
     */
     protected $dates = [
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
+    /**
+     * Fields only fillable
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'first_name', 
+        'last_name',
+        'phone_number', 
+        'created_by', 
+        'updated_by', 
         'created_at',
         'updated_at',
         'deleted_at'
@@ -58,20 +62,6 @@ class Client extends Model
         return $this->belongsTo( User::class , 'user_id', 'id' );
     }
 
-    public function clearances()
-    {
-        /* return $this->hasOne('App\Phone', 'foreign_key_of_the_clearance', 'local_key_of_the_client') // sakto nani */
-        return $this->hasMany(Clearance::class, 'client_id', 'id' );
-    }
-
-    public function scopefindUserID($query, $id)
-    {
-        if($id)
-        {
-            return $query->where('user_id', $id);
-        }
-    }  
-
     public function canDelete()
     {
         // do not allow user to delete his own account
@@ -82,4 +72,5 @@ class Client extends Model
 
         return true;
     }
+
 }

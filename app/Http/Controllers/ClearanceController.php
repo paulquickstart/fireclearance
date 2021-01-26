@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Clearance;
 use App\User;
@@ -73,6 +74,11 @@ class ClearanceController extends Controller
      */
     public function show($id)
     {
+        
+        echo "echo".Auth::user()->id;
+
+        exit();
+
         $data['clearance'] = Clearance::find( $id )->first();
         return view('clearance.show', $data );
     }

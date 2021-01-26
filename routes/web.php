@@ -18,4 +18,5 @@ Route::get('/', function () {
 });
 
 include('user/user.php');
+include('admin/admin.php');
 include('client/client.php');

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -15,7 +16,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
         <!-- BEGIN: Vendor CSS-->
-        <link rel="stylesheet" type="text/css" href="{{ asset('vendors/css/vendors.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('js/plugins/vendors/css/vendors.min.css') }}">
         <!-- END: Vendor CSS-->
 
         <!-- BEGIN: Theme CSS-->
@@ -36,7 +37,7 @@
 
     </head>
 
-        <body class="vertical-layout vertical-menu-modern dark-layout  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" data-layout="dark-layout">
+    <body class="vertical-layout vertical-menu-modern dark-layout  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="" data-layout="dark-layout">
         
         <!-- BEGIN: Header-->
         <nav class="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-dark navbar-shadow">
@@ -104,22 +105,47 @@
             </div>
             <div class="shadow-bottom"></div>
             <div class="main-menu-content">
+
                 <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                    <li class=" nav-item active"><a class="d-flex align-items-center" href="{{ url('user/client') }}"><i data-feather="home"></i><span class="menu-title text-truncate" >Dashboard</span></a>
+                    <li class=" nav-item active">
+                        <a class="d-flex align-items-center" href="{{ url('user/client') }}">
+                            <i data-feather="home"></i><span class="menu-title text-truncate" >Dashboard</span>
+                        </a>
                     </li>
                     <hr/>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" >Profile</span></a>
+                </ul>
+                <ul class="navigation" >
+                     <li class="nav-item ">
+                        <a class="d-flex align-items-center" href="#" data-toggle="modal" data-target="#addNewAdmin" >
+                            <i data-feather="user"></i>
+                            <span class="menu-title text-truncate" >Add New Admin</span>
+                        </a>
                     </li>
-                    <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="help-circle"></i><span class="menu-title text-truncate" >Help and Support</span></a>
+                </ul> 
+                <ul class="navigation" >
+                     <li class="nav-item ">
+                        <a class="d-flex align-items-center" href="#" data-toggle="modal" data-target="#addNewAdmin" >
+                            <i data-feather="user"></i>
+                            <span class="menu-title text-truncate" >Client</span>
+                        </a>
+                    </li>
+                </ul>      
+                <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">        
+                    <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="#"><i data-feather="user"></i><span class="menu-title text-truncate" >Profile</span></a>
+                    </li>
+                    <li class=" nav-item">
+                        <a class="d-flex align-items-center" href="#"><i data-feather="help-circle"></i><span class="menu-title text-truncate" >Help and Support</span></a>
                     </li>
                     <hr/>
                     <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('logout') }}"><i data-feather="power"></i><span class="menu-title text-truncate" >Logout</span></a>
                     </li>
-
                 </ul>
             </div>
         </div>
         <!-- END: Main Menu-->
+
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -256,48 +282,64 @@
 
 
 
-    <!-- BEGIN: Content-->
-    <div class="app-content content ">
-        <div class="content-overlay"></div>
-        <div class="header-navbar-shadow"></div>
-        <div class="content-wrapper">
-            <div class="content-body">
-                
-                @yield('content')
+        <!-- BEGIN: Content-->
+        <div class="app-content content ">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper">
+                <div class="content-body">
+                    
+                    @yield('content')
 
+                </div>
             </div>
         </div>
-    </div>
-    <!-- END: Content-->
+        <!-- END: Content-->
 
-    </div>
-    <div class="sidenav-overlay"></div>
-    <div class="drag-target"></div>
+        </div>
+        <div class="sidenav-overlay"></div>
+        <div class="drag-target"></div>
+
+        <!-- BEGIN: Footer-->
+        <footer class="footer footer-static footer-dark">
+            <p class="clearfix mb-0">
+                <span class="float-md-right d-none d-md-block">COPYRIGHT &copy; 2020<a class="ml-25" href="#" target="_blank">Bureau of Fire Protection</a>, All rights Reserved</span></p>
+        </footer>
+        <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 
 
+        <script type="text/javascript" src="{{ asset('js/plugins/jquery-3.5.1.slim.min.js') }}" /></script>
+        <script type="text/javascript" src="{{ asset('js/plugins/popper.js@1.16.1/popper.min.js') }}" /></script>
+        <script type="text/javascript" src="{{ asset('js/plugins/bootstrap@4.5.3/bootstrap.min.js') }}" /></script>
 
-    <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-dark">
-        <p class="clearfix mb-0">
-            <span class="float-md-right d-none d-md-block">COPYRIGHT &copy; 2020<a class="ml-25" href="#" target="_blank">Bureau of Fire Protection</a>, All rights Reserved</span></p>
-    </footer>
-    <button class="btn btn-primary btn-icon scroll-top" type="button"><i data-feather="arrow-up"></i></button>
 
         <!-- BEGIN: Vendor JS-->
-        <script src="{{ asset('vendors/js/vendors.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/vendors/js/vendors.min.js') }}"></script>
         <!-- BEGIN Vendor JS-->
 
         <!-- BEGIN: Page Vendor JS-->
-        <script src="{{ asset('vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('js/plugins/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
         <!-- END: Page Vendor JS-->
 
         <!-- BEGIN: Theme JS-->
-        <script src="{{ asset('js/core/app-menu.js') }}"></script>
-        <script src="{{ asset('js/core/app.js') }}"></script>
+        <script src="{{ asset('js/plugins/core/app-menu.js') }}"></script>
+        <script src="{{ asset('js/plugins/core/app.js') }}"></script>
         <!-- END: Theme JS-->
 
         <!-- BEGIN: Page JS-->
-        <script src="{{ asset('js/scripts/pages/page-auth-register.js') }}"></script>
+        <script src="{{ asset('js/plugins/pages/page-auth-register.js') }}"></script>
+
+        <!-- BEGIN: Super Admin -->
+        <script src="{{ asset('js/initialize.js') }}"></script>
+        <script src="{{ asset('js/initialize.rest.route.js') }}"></script>
+        <script src="{{ asset('js/initialize.variable.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin.edit.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin.update.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin.edit-password.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin.delete.js') }}"></script>
+        <!-- END: Super Admin -->
+
         <!-- END: Page JS-->
 
         <script>

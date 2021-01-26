@@ -122,7 +122,6 @@
     </div>
     <!-- END: Content-->
 
-
     <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('vendors/js/vendors.min.js') }}"></script>
     <!-- BEGIN Vendor JS-->

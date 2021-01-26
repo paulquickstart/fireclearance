@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Clearance;
-use App\Client;
+
 use App\User;
+use App\Role;
+use App\Admin;
 use DB;
 
-class ClientController extends Controller
+class SuperAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,28 +18,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $id = Auth::id();
-        $clearance = New Clearance();
-
-        if($id){
-            $data = self::latestClearance($id);
-            if($data)
-            {
-                $clearance->id = $data->id;
-                $clearance->project_title = $data->project_title;
-                $clearance->project_location = $data->project_location;
-                $clearance->amount = $data->amount;
-                $clearance->fsec = $clearance->fSec( $data->fsec );
-                $clearance->fsic = $clearance->fSec( $data->fsic );
-            } else {
-                $clearance = $data;
-            }
-        }
-        $data['clearance']=$clearance;
-
-        $data['clearances']=Clearance::all()->skip(1);
-
-        return view('client.index', $data );
+        $users = User::with(['roles'])->get();
+        $data = [ 'users' => $users ];
+        return view('superadmin.index', $data );
     }
 
     /**
@@ -60,7 +41,35 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        redirect('client');
+        if ($request->isMethod('post')) {
+
+            return DB::transaction(function () use ($request)
+            {
+                $user_id = is_user_logged_id();
+
+                $user['username'] = $request->input('register-username');
+                $user['email'] = $request->input('register-email');
+                $user['password'] = bcrypt($request->input('register-password'));
+                $user['user_type'] = $request->input('user-type');
+                $user['created_by']  = $user_id;
+                $user['updated_by']  = $user_id;
+
+                $user = User::create($user);  
+                $user->roles()->attach(Role::find( $request->input('user-role') ));
+
+                $admin['first_name']  = "";
+                $admin['last_name']   = "";
+                $admin['created_by']  = $user_id;
+                $admin['updated_by']  = $user_id;
+
+                $admin = new Admin($admin);
+                $result = $user->admins()->save($admin);
+
+                return redirect('user/super-admin');
+            }); 
+
+        }
+
     }
 
     /**
@@ -106,19 +115,5 @@ class ClientController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-
-    public function latestClearance($id)
-    {
-        $client = User::find($id)->client()->first();
-        // $user = $client->user;
-        // $user->username;
-        $clearance = Client::find($client->id)->clearance()->first();
-
-        if( $clearance !== null ){
-            return $clearance;
-        }
-        return false;
     }
 }
