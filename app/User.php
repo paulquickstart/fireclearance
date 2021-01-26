@@ -14,11 +14,6 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
 
-    // Cast attributes JSON to array
-    protected $casts = [
-        'attributes' => 'array'
-    ];
-
     const ADMIN_USER_TYPE = [
         'id' => self::ADMIN_TYPE, 
         'name' => "Admin"
