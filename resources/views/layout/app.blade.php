@@ -333,11 +333,11 @@
         <script src="{{ asset('js/initialize.js') }}"></script>
         <script src="{{ asset('js/initialize.rest.route.js') }}"></script>
         <script src="{{ asset('js/initialize.variable.js') }}"></script>
-        <script src="{{ asset('js/views/super-admin.js') }}"></script>
+        <!-- <script src="{{ asset('js/views/super-admin.js') }}"></script> -->
         <script src="{{ asset('js/views/super-admin.edit.js') }}"></script>
-        <script src="{{ asset('js/views/super-admin.update.js') }}"></script>
+<!--         <script src="{{ asset('js/views/super-admin.update.js') }}"></script>
         <script src="{{ asset('js/views/super-admin.edit-password.js') }}"></script>
-        <script src="{{ asset('js/views/super-admin.delete.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin.delete.js') }}"></script> -->
         <!-- END: Super Admin -->
 
         <!-- END: Page JS-->
