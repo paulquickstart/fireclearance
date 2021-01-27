@@ -1,1 +1,1 @@
-const USER_SUPERADMIN_RESTROUTE = ROOTURL+'/user/admin';
+const USER_SUPERADMIN_RESTROUTE = ROOTURL+'/user/super-admin/';

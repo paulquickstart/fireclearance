@@ -8,22 +8,24 @@ function editSuperAdminView(object){
 
 function generateJSONeditSuperAdmin(id){
 
-	$.ajax({
-		dataType: 'json', 
-		url: USER_SUPERADMIN_RESTROUTE+"/"+id+"/edit",
-		method: 'GET',
-	})
-	.done(function(object) {
-		if(object){
-			editSuperAdminView(object);
-		}
-	})
-	.fail(function() {
-		console.error("REST error. Nothing returned for AJAX.");
-	})
-	.always(function() {
+	console.log(id);
 
-	})
+	// $.ajax({
+	// 	dataType: 'json', 
+	// 	url: USER_SUPERADMIN_RESTROUTE+"/"+id+"/edit",
+	// 	method: 'GET',
+	// })
+	// .done(function(object) {
+	// 	if(object){
+	// 		editSuperAdminView(object);
+	// 	}
+	// })
+	// .fail(function() {
+	// 	console.error("REST error. Nothing returned for AJAX.");
+	// })
+	// .always(function() {
+
+	// })
 
 }
 

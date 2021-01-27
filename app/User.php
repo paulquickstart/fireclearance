@@ -83,7 +83,7 @@ class User extends Authenticatable
 
 
     /** Relationship Table **/
-    public function admins()
+    public function admin()
     {
         // return $this->hasOne(Admin::class);   return $this->hasOne('App\Models\Admin');
         return $this->hasOne(Admin::class, 'user_id', 'id');
@@ -93,7 +93,7 @@ class User extends Authenticatable
      * The client that belong to the user.
      * return $this->hasOne('App\Phone', 'foreign_key_of_the_client', 'local_key_of_the_user') // sakto nani
     */
-    public function clients()
+    public function client()
     {
         return $this->hasOne(Client::class, 'user_id', 'id');
     }

@@ -61,7 +61,25 @@ class SuperAdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        switch ($user->user_type){
+            case User::ADMIN_USER_TYPE['id'] : 
+
+                $data['first_name'] = $user->admin->first_name;
+                $data['last_name']  = $user->admin->last_name;
+                break;
+
+           case  User::CLIENT_USER_TYPE['id'] :
+                $data['first_name'] = $user->client->first_name;
+                $data['last_name']  = $user->client->last_name;
+                break;
+        }
+
+        $data['username'] = $user->username;
+        $data['email'] = $user->email;
+
+        return response()->json($data);
     }
 
     /**
