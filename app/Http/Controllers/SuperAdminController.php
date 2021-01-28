@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Admin;
+use App\Client;
 use App\Role;
 use DB;
 
@@ -94,7 +95,6 @@ class SuperAdminController extends Controller
     {
         return DB::transaction( function() use ($request, $id)
         {
-    
             $user = User::find($id);
  
             switch ($user->user_type){
@@ -128,7 +128,39 @@ class SuperAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return DB::transaction(function () use ($id)
+        {
+            $user = User::findOrFail($id);
+        
+            switch ($user->user_type){
+                case User::ADMIN_USER_TYPE['id'] : 
+                    
+                    if ($user->admin->canDelete())
+                    {
+                        $user = $user->delete();
+                    }
+
+                    break;
+
+                case  User::CLIENT_USER_TYPE['id'] :
+
+                    $user->delete();
+                    
+                    break;
+            }
+
+            return response()->json($user);
+        });
+
+        //  return DB::transaction(function () use ($id)
+        // {
+        //     $admin = use::findOrFail($id);
+        //     if ($admin->user->canDelete())
+        //     {
+        //         $admin->delete();
+        //     }
+        //    return redirect('user/admin');
+        // });
     }
 
     /**

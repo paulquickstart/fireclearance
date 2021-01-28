@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Model;;
+use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
@@ -52,7 +52,7 @@ class Client extends Model
     /**
     * Inverse
     */
-    public function users()
+    public function user()
     {
         /* return $this->hasOne('App\Phone', 'foreign_key_of_the_client', 'local_key_of_user') // sakto nani */
         return $this->belongsTo( User::class , 'user_id', 'id' );

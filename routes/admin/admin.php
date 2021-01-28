@@ -12,10 +12,10 @@ Route::group( ['middleware' => [ 'auth.admin' ] ], function()
         	// Route::resource('ajax/super-admin', 'Ajax\SuperAdminController', ['index','store', 'show', 'update', 'destroy']);
         	Route::put('super-admin-password/{id}', ['as' => 'super-admin.password', 'uses' => 'SuperAdminController@updatePassword']);	
         });	
-        // Route::group(['middleware' => ['role:'.Role::byId(Role::ADMIN)]], function()
-        // {
-        //     Route::resource('admin', 'SuperAdminController', ['only' => ['index','store', 'show', 'update', 'destroy']]);    
-        // }); 
+        Route::group(['middleware' => ['role:'.Role::byId(Role::ADMIN)]], function()
+        {
+            Route::resource('admin', 'AdminController', ['only' => ['index','store', 'show', 'update', 'destroy']]);    
+        }); 
 
 
     });

@@ -54,7 +54,7 @@ class User extends Authenticatable
         'email',
         'name', 
         'password',
-         'user_type',
+        'user_type',
         'created_by',
         'updated_by',
         'created_at',
