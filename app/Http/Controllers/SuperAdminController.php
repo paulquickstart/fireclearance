@@ -107,16 +107,16 @@ class SuperAdminController extends Controller
 
                     $user->client->update( $request->only('first_name', 'last_name') );
 
-                    if($result){
-                        $result = true; 
-                    }
-
                     break;
             }
 
            $result = $user->update( $request->only('username', 'email') ); 
 
-            return response()->json($data=$result);
+           if($result){
+                $result = true;
+           }
+
+            return response()->json($result);
         });
     }
 
@@ -129,6 +129,27 @@ class SuperAdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request, $id)
+    {
+        return DB::transaction( function() use ($request, $id)
+        {
+            $user = User::find($id);
+            $result = $user->password = bcrypt($request->input('password'));
+            
+           if($result){
+                $result = true;
+           }
+
+            return response()->json($result);
+        });
     }
 }
     

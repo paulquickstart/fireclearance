@@ -336,8 +336,9 @@
         <!-- <script src="{{ asset('js/views/super-admin.js') }}"></script> -->
         <script src="{{ asset('js/views/super-admin/super-admin.edit.js') }}"></script>
         <script src="{{ asset('js/views/super-admin/super-admin.update.js') }}"></script>
-<!--         <script src="{{ asset('js/views/super-admin.edit-password.js') }}"></script>
-        <script src="{{ asset('js/views/super-admin.delete.js') }}"></script> -->
+        <script src="{{ asset('js/views/super-admin/super-admin.password.edit.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin/super-admin.password.update.js') }}"></script>
+        <!-- <script src="{{ asset('js/views/super-admin.delete.js') }}"></script> -->
         <!-- END: Super Admin -->
 
         <!-- END: Page JS-->

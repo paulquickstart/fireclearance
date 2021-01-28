@@ -34,7 +34,7 @@
 	      			class="btn btn-info btn-sm editPasswordButton" 
 	      			data-user-data-id="{{ $user->id }}"
 	      			data-toggle="modal" 
-	      			data-target="#editPasswordButton" >
+	      			data-target="#editPasswordModal" >
 	      			edit credential
 	      		</button>
 	      	</td>
@@ -93,7 +93,7 @@
 	  </div>
 	</div>
 
-	<div id="editPasswordButton" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div id="editPasswordModal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog modal-lg">
 	    <div class="modal-content">
 	      <div class="modal-header">

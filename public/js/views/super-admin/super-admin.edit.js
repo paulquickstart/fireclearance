@@ -16,7 +16,6 @@ function editSuperAdminView(object){
 
 function generateJSONeditSuperAdmin(id){
 
-
 	$.ajax({
 		dataType: 'json', 
 		url: USER_SUPERADMIN_RESTROUTE+id+"/edit",
