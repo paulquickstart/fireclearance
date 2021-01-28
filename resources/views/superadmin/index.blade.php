@@ -31,10 +31,10 @@
 	      	</td>
 	      	<td>
 	      		<button type="button" 
-	      			class="btn btn-info btn-sm editUserPasswordButton" 
+	      			class="btn btn-info btn-sm editPasswordButton" 
 	      			data-user-data-id="{{ $user->id }}"
 	      			data-toggle="modal" 
-	      			data-target="#editUserPasswordModal" >
+	      			data-target="#editPasswordButton" >
 	      			edit credential
 	      		</button>
 	      	</td>
@@ -63,7 +63,7 @@
 	        </button>
 	      </div>
 	      <form id="userProfile" class="auth-register-form mt-2" >
-	      	<input type="hidden" id="userID" />
+	      	<input type="hidden" class="userID" />
 	      	<div class="modal-body">
 	            @csrf
 				<h5> Info Profile </h5>
@@ -85,7 +85,7 @@
 	            </div>
 			</div>
 		      <div class="modal-footer">
-		      	<button type="button" id="updateUserInfoProfileButton" class="btn btn-primary" tabindex="5">Update</button>
+		      	<button type="button" id="updateUserButton" class="btn btn-primary" tabindex="5">Update</button>
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		      </div>
 	      </form>
@@ -93,7 +93,7 @@
 	  </div>
 	</div>
 
-	<div id="editUserPasswordModal" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div id="editPasswordButton" class="modal fade" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog modal-dialog modal-lg">
 	    <div class="modal-content">
 	      <div class="modal-header">

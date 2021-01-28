@@ -16,7 +16,6 @@ function editSuperAdminView(object){
 
 function generateJSONeditSuperAdmin(id){
 
-	console.log(USER_SUPERADMIN_RESTROUTE+id+"/edit",)
 
 	$.ajax({
 		dataType: 'json', 
@@ -48,6 +47,9 @@ $(document).on("click",".editProfileButton", function(){
     });
 
 	userID = $(this).data('user-data-id');
+
+	$(".userID").val( userID );
+
 	generateJSONeditSuperAdmin(userID);
 
 });

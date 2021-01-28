@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Admin;
 use App\Role;
+use DB;
 
 class SuperAdminController extends Controller
 {
@@ -91,7 +92,32 @@ class SuperAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return DB::transaction( function() use ($request, $id)
+        {
+    
+            $user = User::find($id);
+ 
+            switch ($user->user_type){
+                case User::ADMIN_USER_TYPE['id'] : 
+                    
+                    $user->admin->update( $request->only('first_name', 'last_name') );   
+                    break;
+
+               case  User::CLIENT_USER_TYPE['id'] :
+
+                    $user->client->update( $request->only('first_name', 'last_name') );
+
+                    if($result){
+                        $result = true; 
+                    }
+
+                    break;
+            }
+
+           $result = $user->update( $request->only('username', 'email') ); 
+
+            return response()->json($data=$result);
+        });
     }
 
     /**
@@ -105,3 +131,4 @@ class SuperAdminController extends Controller
         //
     }
 }
+    
