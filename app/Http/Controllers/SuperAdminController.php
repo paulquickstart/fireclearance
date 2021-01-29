@@ -41,7 +41,48 @@ class SuperAdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return DB::transaction(function () use ($request)
+        {
+            $user_id = is_user_logged_id();
+
+            $first_name = $request->input('first_name');
+            $last_name = $request->input('last_name');
+
+            $data['username']    = $request->input('username');
+            $data['email']       = $request->input('email');
+            $data['password']    = bcrypt($request->input('password'));
+            $data['name']        = $first_name.' '.$last_name;
+            $data['user_type']   = $request->input('user_type');
+            $data['created_by']  = $user_id;
+            $data['updated_by']  = $user_id;
+
+            $user = User::create($data);
+            $user->roles()->attach(Role::find( $request->input('role_name') ));
+
+            $user_type['first_name']  = $first_name;
+            $user_type['last_name']   = $last_name;
+            $user_type['created_by']  = $user_id;
+            $user_type['updated_by']  = $user_id;
+
+            switch ($data['user_type']){
+                case User::ADMIN_USER_TYPE['id'] : 
+                    $admin = new Admin($user_type);
+                    $result = $user->admin()->save($admin);
+                    break;
+
+               case  User::CLIENT_USER_TYPE['id'] :
+                    $client = new Client($user_type);
+                    $result = $user->admin()->save($client);
+                    break;
+            }
+
+            if($result){
+                $result = true;
+            }
+
+            return response()->json($result);
+
+        });
     }
 
     /**
@@ -63,25 +104,28 @@ class SuperAdminController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        return DB::transaction(function () use ($id)
+        {
+            $user = User::find($id);
 
-        switch ($user->user_type){
-            case User::ADMIN_USER_TYPE['id'] : 
+            switch ($user->user_type){
+                case User::ADMIN_USER_TYPE['id'] : 
 
-                $data['first_name'] = $user->admin->first_name;
-                $data['last_name']  = $user->admin->last_name;
-                break;
+                    $data['first_name'] = $user->admin->first_name;
+                    $data['last_name']  = $user->admin->last_name;
+                    break;
 
-           case  User::CLIENT_USER_TYPE['id'] :
-                $data['first_name'] = $user->client->first_name;
-                $data['last_name']  = $user->client->last_name;
-                break;
-        }
+               case  User::CLIENT_USER_TYPE['id'] :
+                    $data['first_name'] = $user->client->first_name;
+                    $data['last_name']  = $user->client->last_name;
+                    break;
+            }
 
-        $data['username'] = $user->username;
-        $data['email'] = $user->email;
+            $data['username'] = $user->username;
+            $data['email'] = $user->email;
 
-        return response()->json($data);
+            return response()->json($data);
+        });
     }
 
     /**

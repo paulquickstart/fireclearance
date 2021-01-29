@@ -116,15 +116,15 @@
                 </ul>
                 <ul class="navigation" >
                      <li class="nav-item ">
-                        <a class="d-flex align-items-center" href="#" data-toggle="modal" data-target="#addNewAdmin" >
+                        <a class="d-flex align-items-center" href="#" data-toggle="modal" data-target="#createUserModal" >
                             <i data-feather="user"></i>
-                            <span class="menu-title text-truncate" >Add New Admin</span>
+                            <span class="menu-title text-truncate" >Add New Users</span>
                         </a>
                     </li>
                 </ul> 
                 <ul class="navigation" >
                      <li class="nav-item ">
-                        <a class="d-flex align-items-center" href="#" data-toggle="modal" data-target="#addNewAdmin" >
+                        <a class="d-flex align-items-center" href="#" data-toggle="modal" data-target="#" >
                             <i data-feather="user"></i>
                             <span class="menu-title text-truncate" >Client</span>
                         </a>
@@ -333,6 +333,7 @@
         <script src="{{ asset('js/initialize.js') }}"></script>
         <script src="{{ asset('js/initialize.rest.route.js') }}"></script>
         <script src="{{ asset('js/initialize.variable.js') }}"></script>
+        <script src="{{ asset('js/views/super-admin/super-admin.create.js') }}"></script>
         <!-- <script src="{{ asset('js/views/super-admin.js') }}"></script> -->
         <script src="{{ asset('js/views/super-admin/super-admin.edit.js') }}"></script>
         <script src="{{ asset('js/views/super-admin/super-admin.update.js') }}"></script>

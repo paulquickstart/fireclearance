@@ -1,7 +1,5 @@
 function updateUser(id, formData){
 
-	console.log( USER_SUPERADMIN_RESTROUTE+id );
-
 	$.ajax({
 		dataType: 'json', 
 		url: USER_SUPERADMIN_RESTROUTE+id,
@@ -39,8 +37,6 @@ $(document).on("click","#updateUserButton", function(){
     });
 		
 	userProfile = $("form#userProfile").serialize();
-
-	console.log(userProfile);
 
 	editProfileModal = $("#editProfileModal");
 
